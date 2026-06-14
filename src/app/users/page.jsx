@@ -1,3 +1,4 @@
+import Link from "next/link";
 
 
 const UsersPage = async () => {
@@ -10,10 +11,12 @@ const UsersPage = async () => {
                  {
                     users.map(user => <div key={user.id}   className="card bg-primary  text-primary-content ">
          <div className="card-body">
-        <h2 className="card-title">Card title!</h2>
+        <h2 className="card-title">{user.name}</h2>
        <p>A card component has a figure, a body part, and inside body there are title and actions parts</p>
        <div className="card-actions justify-end">
-      <button className="btn">Buy Now</button>
+       <Link href={`/users/${user.id}`}>
+        <button className="btn">Show Info Now</button>
+       </Link>
        </div>
       </div>
          </div>)
