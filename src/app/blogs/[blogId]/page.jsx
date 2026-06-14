@@ -1,7 +1,5 @@
 
-import Link from "next/link";
-const BlogsPage = () => {
-const blogs = [
+  const blogs = [
   {
     id: 1,
     title: "Understanding Client-Side Rendering",
@@ -55,20 +53,19 @@ const blogs = [
       "SEO remains a critical part of web development. Proper metadata, fast loading times, and quality content all contribute to better rankings..."
   }
 ];
-     
-
+const BlogDetailPage = async ({ params }) => {
+     const   { blogId } = await params
+      const blog = blogs.find(blog => blog.id === parseInt(blogId));
+    console.log('show me params', blog)
     return (
-        <div>
-           <h2 className ="text-3xl font-bold mb-4"></h2>
-           
-            {blogs.map(blog => <div key={blog.id}>
-                  <h2 className="text-4xl font-bold mb-2">{blog.title}</h2>
-                  <Link href={`/blogs/${blog.id}`}> Show details</Link>
+         <div>
+      {blog && <div>
+             <h2 className="text-2xl text-red-500">{blog.title}</h2>
+             <p>{blog.content}</p>
+         </div>}
 
-            </div>)}
-
-        </div>
+         </div>
     );
 };
 
-export default BlogsPage;
+export default  BlogDetailPage;
